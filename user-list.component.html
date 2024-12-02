@@ -1,0 +1,448 @@
+<!--7
+<p>user-list works!</p>
+<div class="container mt-5">
+
+    <h2>User List</h2>
+    <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr @for="let user of users">
+        @for (user of users; track users) {
+            <tr>
+
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+            </tr>
+        }
+
+   
+    </tbody>
+    </table>
+    </div>-->
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Mi Sitio Angular</title>
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+      <link href="https://cdn.jsdelivr.net/npm/@angular/material@15.0.0/prebuilt-themes/indigo-pink.css" rel="stylesheet">
+      <style>
+        /* Configuración de imagen de fondo */
+    
+        
+       /* Configuración de imagen de fondo */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: auto; /* Make sure the body takes full height */
+  width: auto;
+  font-family: Arial, sans-serif;
+  background-image: url('m.png');
+  background-size: auto; 
+
+  background-position: center;
+  color: rgb(255, 114, 114);
+}
+
+/* Estilo de la barra de navegación */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: rgb(0, 0, 0); /* Fondo semitransparente */
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ff0000;
+  text-decoration: none;
+}
+
+.navbar .menu {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navbar .menu li a {
+  color: #ff2727;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.navbar .menu li a:hover {
+  color: #ffecb7; /* Cambia el color al pasar el cursor */
+}
+
+/* Contenedor principal */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  min-height: 100vh; /* Ensure the container takes at least full height */
+}
+
+/* Contenedor de bienvenida */
+.welcome-container {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+/* Estilo del texto del usuario */
+.welcome-containeruser {
+  text-align: center;
+  color:#e9e9e9;
+  background-color: rgb(0, 0, 0);
+  padding: 10px;
+  border-radius:2px;
+  margin-bottom: 0px;
+  font-size: 20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.welcome-container h1 {
+  font-size: 28px;
+  color: #ffffff;
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+}
+
+.welcome-container p {
+  font-size: 10px;
+  color: #ff1717;
+  margin: 5px 0 20px;
+  font-size: 10px;
+}
+
+/* Botón de regresar */
+.welcome-button {
+  /*display: inline-block;*/
+  padding: 10px 20px;
+  width: 110px;
+  height: auto;
+  font-size: 2x;
+  color: #160189;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.welcome-button:hover {
+  background-color: #0056b3;
+}
+
+.mat-menupanel {
+  min-width: 300px; /* Cambia el ancho mínimo del menú */
+  max-width: 4000px; /* Cambia el ancho máximo si es necesario */
+  /* Ajusta el espaciado interno */
+  font-size: 20px; /* Tamaño de fuente del texto */
+  border-radius: 10px; /* Bordes redondeados */
+
+  background-color: white;
+}
+
+.mat-menui {
+
+  border-radius: 10px; 
+ /* Cambia el tamaño de letra de los elementos */
+  padding: 10px 10px; /* Espaciado interno de los elementos */
+   font-size: 20px; /* Tamaño de fuente del texto */
+  border-radius: 1px; /* Bordes redondeados */
+  cursor:inherit;
+  text-align: center;
+  width: 180px;
+  color: #000000; /* Color del texto */
+  background-color: rgb(255, 255, 255); /* Fondo al pasar el cursor */
+
+}
+
+.mat-menu-item:hover {
+  background-color: rgb(177, 255, 124); /* Fondo al pasar el cursor */
+  color: #000000; /* Color del texto al pasar el cursor */
+}
+
+
+/* Estilo para la tabla */
+.menu-bar {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  color: pink;
+  background-color: black;
+}
+
+.mat-form-field {
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+/* Estilo para las celdas de la tabla */
+.mat-header-cell, .mat-cell {
+  text-align: center;
+  align-items: center;
+}
+
+/* Estilo para el filtro */
+.mat-form-field {
+  margin-bottom: 20px;
+  width: 300px;
+  border-radius: 90px;
+}
+
+/* Estilo para la fila */
+.mat-header-cell {
+  background-color: #ff0000;  /* Rojo */
+  color: rgb(254, 0, 0);
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium';
+}
+
+.mat-row {
+  background-color: #ff6666;
+}
+
+.mat-row:hover {
+  background-color: #ff1717;
+}
+
+/* Estilo para el paginador */
+mat-paginator {
+  margin-top: 20px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Título de la página */
+.title {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* Contenedor de la tabla */
+.table-container {
+  width: 100%;
+  max-width: 1000px;
+  background-color: #ed1b1b;  /* Rojo */
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Paginador */
+mat-paginator {
+  margin-top: 20px;
+  background-color: #ffffff;
+  color: #000000;
+}
+
+/* Botón de color */
+button.color {
+  color: rgb(0, 0, 0);
+  font-size: 25px;
+  width: 180px;
+  height: 100px;
+  background-color: #ffffff;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: rgb(255, 255, 255);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.user-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+      </style>
+    </head>
+    <body >
+    
+      <!-- Barra de menú principal -->
+      <nav class="navbar">
+              <div class="user-info">
+
+                <strong><h1>Sección de Noticias 
+                    <span class="user-info"> Hola   {{ loggedInUser?.name }} , te presentamos las noticias día.</span> 
+                </h1></strong>
+          <!-- <span class="user-info">{{ loggedInUser?.name }}</span>
+         <img *ngIf="loggedInUser?.avatar" [src]="loggedInUser.avatar" alt="Avatar" class="user-avatar" />
+              --></div>
+      
+       
+                 <!-- Barra de menú interactiva -->
+        <div class="menu-bar">
+          <button mat-button [matMenuTriggerFor]="menu1" class="color">
+             <span class="welcome-containeruser">{{ loggedInUser?.name }}</span>
+            <br>
+            <img *ngIf="loggedInUser?.avatar" [src]="loggedInUser.avatar" alt="Avatar" class="user-avatar" />
+  </button>
+          <mat-menu  #menu1="matMenu" yPosition="above">
+            <button mat-menu-item class="mat-menui" (click)="showInfoUser()">Mi información</button>
+
+            <button mat-menu-item class="mat-menui" (click)="logout()">  Cerrar sesion  </button>
+          </mat-menu>
+
+        </div>     
+      </nav>
+    
+      <div class="main-container ">
+        <!-- Pantalla de bienvenida -->
+      <!----> <div class="welcome-container">
+          <h1>Noticias de Estados Unidos de América</h1>
+        </div>
+      
+        <!-- Botones para cambiar de datos -->
+        <div class="button-container">
+          <!--<button mat-raised-button color="primary" (click)="switchData('users')">Ver Usuarios</button>-->
+        <!-- <button mat-raised-button color="accent" (click)="switchData('news')">Ver Noticias</button>-->
+        </div>
+      
+        <!-- Filtro -->
+        <mat-form-field class="mat-form-field">
+          <mat-label>Filtrar</mat-label>
+          <input matInput (keyup)="applyFilter($event)" placeholder="Filtrar resultados" />
+        </mat-form-field>
+      
+        <!-- Tabla dinámica -->
+        <div class="mat-elevation-z8 table-container ">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <!-- Columna ID -->
+            <ng-container matColumnDef="id" *ngIf="activeData === 'users'">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+              <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+            </ng-container>
+      
+            <!-- Columna Nombre -->
+            <ng-container matColumnDef="name" *ngIf="activeData === 'users'">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+              <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+            </ng-container>
+      
+            <!-- Columna Email -->
+            <ng-container matColumnDef="email" *ngIf="activeData === 'users'">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+              <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+            </ng-container>
+      
+            <!-- Columna Rol -->
+            <ng-container matColumnDef="role" *ngIf="activeData === 'users'">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Rol </th>
+              <td mat-cell *matCellDef="let row">{{ row.role }}</td>
+            </ng-container>
+      
+            <!-- Columna Fuente -->
+             
+            <!-- Columna ID-->
+
+
+          
+            <!-- Columna Autor -->
+           <!-- Columna Autor -->
+           <ng-container matColumnDef="id" *ngIf="activeData === 'news'">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+          </ng-container>
+
+
+<ng-container matColumnDef="author" *ngIf="activeData === 'news'">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header> Autor </th>
+  <td mat-cell *matCellDef="let row">{{ row.author || 'N/A' }}</td>
+</ng-container>
+
+<!-- Columna Título -->
+<ng-container matColumnDef="title" *ngIf="activeData === 'news'">
+  <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
+  <td mat-cell *matCellDef="let row">{{ row.title }}</td>
+</ng-container>
+
+<!-- Columna Imagen -->
+<ng-container matColumnDef="imagen" *ngIf="activeData === 'news'">
+  <th mat-header-cell *matHeaderCellDef> Imagen </th>
+  <td mat-cell *matCellDef="let row">
+    <img *ngIf="row.urlToImage" [src]="row.urlToImage" width="90" />
+    <span *ngIf="!row.urlToImage">Imagen NO Disponible</span>
+  </td>
+</ng-container>
+
+<!-- Columna Información -->
+<ng-container matColumnDef="info" *ngIf="activeData === 'news'">
+  <th mat-header-cell *matHeaderCellDef> Información </th>
+  <td mat-cell *matCellDef="let row">
+    <img src="info.png" alt="Información" width="50" (click)="handleAction('info', row)" style="cursor: pointer;" />
+  </td>
+</ng-container>
+
+<!-- Columna Editar -->
+<ng-container matColumnDef="edit" *ngIf="activeData === 'news'">
+  <th mat-header-cell *matHeaderCellDef> Editar </th>
+  <td mat-cell *matCellDef="let row">
+    <img src="editar.png" alt="Editar" width="30" (click)="handleAction('edit', row)" style="cursor: pointer;" />
+  </td>
+</ng-container>
+
+<!-- Columna Borrar -->
+<ng-container matColumnDef="delete" *ngIf="activeData === 'news'">
+  <th mat-header-cell *matHeaderCellDef> Borrar </th>
+  <td mat-cell *matCellDef="let row">
+    <img src="borrar.png" alt="Borrar" width="30" (click)="handleAction('delete', row)" style="cursor: pointer;" />
+  </td>
+</ng-container>
+
+
+
+      
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" [attr.colspan]="displayedColumns.length">No se encontraron resultados</td>
+            </tr>
+          </table>
+        </div>
+      
+    
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="componente"></mat-paginator>
+        <br>
+<!--
+        <a class="welcome-button" (click)="logout()">Regresar a Login</a>
+      -->
+      </div>
+      
+    </body>
+    </html>
+    
