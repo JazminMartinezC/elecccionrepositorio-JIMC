@@ -1,0 +1,11 @@
+div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-size: cover;
+    background-color: rgb(255, 222, 112);
+    background-position: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }

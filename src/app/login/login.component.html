@@ -1,0 +1,89 @@
+<style>
+    div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-size: cover;
+            background-color: rgb(255, 222, 112);
+            background-image: url("fondo.jpg");
+            background-position: center;
+            padding: 20px;
+            box-sizing: border-box;
+          }
+
+          .btn {
+            margin-top: 20px;
+            padding: 12px 24px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            align-items: center;
+          }
+
+          mat-card-title
+          {
+            align-items: center;
+            align-content: center;
+          }
+
+          mat-form-field
+          {
+            color: black;
+            background-color: rgb(255, 255, 255);
+        }
+          </style>
+<div >
+    
+      <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title>Iniciar sesion - Registro </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-tab-group dynamicHeight>
+            
+            <mat-tab label="Iniciar Sesión">
+              <mat-form-field class="example-full-width">
+                <mat-label>Correo</mat-label>
+                <input type="email" matInput placeholder="Email" [(ngModel)]="email" required>
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <br>
+              <mat-form-field>
+                <mat-label>Contraseña</mat-label>
+                <input type="password" matInput placeholder="Password" [(ngModel)]="password" required>
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+              <br>
+              <button class="btn" (click)="iniciarPagina()">Iniciar Sesion</button>
+            </mat-tab>
+
+            <mat-tab label="Register">
+              <mat-form-field class="example-full-width">
+                <mat-label>Correo</mat-label>
+                <input type="email" matInput placeholder="Email" [(ngModel)]="remail" required>
+                <mat-icon matSuffix>email</mat-icon>
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width">
+                <mat-label>Contraseña</mat-label>
+                <input type="password" matInput placeholder="Password" [(ngModel)]="rpassword" required>
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width">
+                <mat-label>Confirmar contraseña</mat-label>
+                <input type="password" matInput placeholder="Confirm Password" [(ngModel)]="rconfirmPassword" required>
+                <mat-icon matSuffix>vpn_key</mat-icon>
+              </mat-form-field>
+              <br>
+              <button class="btn" (click)="iniciarPagina()">Register</button>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </div>
